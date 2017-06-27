@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<title>Test Angular js</title>
+	<meta charset="UTF-8">
+	<script src="js/angular.min.js"></script>
+	<script>
+		angular.module("myApp",[])
+		angular.module("myApp").factory('myService', function($http) {
+			var myService = {
+				async: function() {
+
+					var promise = $http.get('https://jsonplaceholder.typicode.com/posts/').then(function (response) {
+
+
+						return response.data;
+					});
+
+					return promise;
+				}
+			};
+			return myService;
+		});
+
+		angular.module("myApp").controller('MainCtrl', function( myService,$scope) {
+			myService.async().then(function(d) {
+				$scope.data = d;
+			});
+		});
+
+
+	</script>
+
+
+</head>
+
+
+
+
+<body ng-app="myApp">
+	
+
+	<div ng-controller="MainCtrl"> 
+
+		<ul>
+			<li ng-repeat="x in data">{{x}}</li>
+		</ul>
+
+	</div>
+
+
+</body>
+</html>
