@@ -1,0 +1,2 @@
+ciao ho modificato il file , ma essendo dentro .gitignore non dovrebbe essere visualizzato 
+
